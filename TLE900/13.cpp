@@ -1,5 +1,3 @@
-
-
 #include <bits/stdc++.h>
 // #include <ext/pb_ds/assoc_container.hpp>
 // #include <ext/pb_ds/tree_policy.hpp>
@@ -67,30 +65,65 @@ ll nCk(ll n, ll k)
  
  
 void solve(){
- 
-    int t = 1;
-	cin>>t;
-	while(t--){
- 
-		int a,b,n;
-		cin>>a>>b>>n;
- 
-		vi arr(n);
-		for(int i=0; i<n; i++)
-			cin>>arr[i];
- 
-		ll total = b;
- 
-		for(auto x:arr){
-			total += min(1LL+x,a*1LL) - 1;
-		}
-		cout<<total<<nl;
-	}
-}
+    int n;
+    cin>>n;
 
+    vi arr(n+1);
+    for(int i = 1;i<=n;i++)
+    {
+        cin>>arr[i];
+    }
+    
+    int l = -1,r = -1;
+    for(int i =1;i<=n;i++)
+    {
+        if(arr[i] != 0)
+        {
+            if(l == -1 && r == -1)
+            {
+                l = r = i;
+            }
+            else{
+                r = i;
+            }
+        }
+    }
+
+    // if all are 0's 
+    if(l == -1 && r == -1)
+    {
+        cout<<0<<nl;
+    }
+    else
+    {
+        for(int i = l;i<=r;i++)
+        {
+            if(arr[i] == 0)
+            {
+                cout<<2<<nl;
+                return;
+            }
+            
+        }
+        cout<<1<<nl;
+    }
+
+}
+ 
+/*
+ 
+ 
+ 
+*/
  
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	solve();
+     
+	int t = 1;
+	cin >> t;
+	while (t--){
+		solve();
+	}
+	
 }

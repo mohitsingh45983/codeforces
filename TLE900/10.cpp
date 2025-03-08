@@ -1,5 +1,3 @@
-
-
 #include <bits/stdc++.h>
 // #include <ext/pb_ds/assoc_container.hpp>
 // #include <ext/pb_ds/tree_policy.hpp>
@@ -66,31 +64,112 @@ ll nCk(ll n, ll k)
  
  
  
-void solve(){
+// void solve(){
  
-    int t = 1;
-	cin>>t;
-	while(t--){
- 
-		int a,b,n;
-		cin>>a>>b>>n;
- 
-		vi arr(n);
-		for(int i=0; i<n; i++)
-			cin>>arr[i];
- 
-		ll total = b;
- 
-		for(auto x:arr){
-			total += min(1LL+x,a*1LL) - 1;
-		}
-		cout<<total<<nl;
-	}
-}
+// 	int t = 1;
+// 	cin >> t;
+// 	while (t--){
+//         int n,q;
+//         cin>>n>>q;
 
+//         vi arr(n);
+//         F0R(i,n)
+//         {
+//             cin>>arr[i];
+//         }
+
+//         vvi queries(q,vi(3));
+//         F0R(i,q)
+//         {
+//             F0R(j,3)
+//             {
+//                 cin>>queries[i][j];
+//             }
+//         }
+
+//         F0R(i,q)
+//         {
+//             int l = queries[i][0];
+//             int r = queries[i][1];
+//             int k = queries[i][2];
+
+//             ll sum = (r-l+1)*k;
+//             for(int s = 0;s<l-1;s++)
+//             {
+//                 sum += arr[s];
+//             }
+
+//             for(int s = r;s<n;s++)
+//             {
+//                 sum += arr[s];   
+//             }
+
+//             if(sum % 2 == 1) cout<<"YES"<<endl;
+//             else cout<<"NO"<<endl;
+//         }	
+// 	}
+// }
+ 
+// /*
+ 
+ 
+ 
+// */
+ 
+// int main(){
+// 	ios::sync_with_stdio(0);
+// 	cin.tie(0);
+// 	solve();
+// }
+
+void solve(){
+	int n,q;
+	cin>>n>>q;
+ 
+	vll arr(n+1);
+	for(int i=1; i<=n; i++)
+		cin>>arr[i];
+ 
+	vll psum(n+1);
+	for(int i=1; i<=n; i++)
+		psum[i] = psum[i-1] + arr[i];
+ 
+	while(q--){
+		ll l,r,k;
+		cin>>l>>r>>k;
+ 
+		ll sum = psum[l-1] + psum[n] - psum[r] + k*(r-l+1);
+ 
+		if(odd(sum))
+			cout<<"yes"<<nl;
+		else
+			cout<<"no"<<nl;
+ 
+ 
+	}
+ 
+ 
+}
+ 
+/*Odd Queries
+Total = 280
+l = 3, r = 5, k = 20
+arr:  "10 20" 30 40  50  "60  70" -> 
+psum: 10 30 60 100 150 210 280 
+pusm[i] = arr[i] + psum[i-1]
+sum = psum[l-1] + psum[n] - psum[r] + k*(r-l+1) -O(1)
+ 
+//Tip: keep your array as 1-indexed
+ 
+T: (t*n*q) --> (t*(n+q))
+*/
  
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	solve();
+ 
+	int t=1;
+	cin>>t;
+	while(t--)
+		solve();
 }

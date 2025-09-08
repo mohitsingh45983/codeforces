@@ -72,9 +72,19 @@ ll nCk(ll n, ll k)
  
  
  
-void solve()
-{
+void solve() {
+    int a, b;
+    cin >> a >> b;
+
+    if (a == b) {
+        cout << 0 << nl;
+    } else if (a % b == 0 || b % a == 0) {
+        cout << 1 << nl;
+    } else {
+        cout << 2 << nl;
+    }
 }
+
 /*
  
  

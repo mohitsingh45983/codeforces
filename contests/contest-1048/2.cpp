@@ -71,10 +71,27 @@ ll nCk(ll n, ll k)
 */
  
  
- 
-void solve()
-{
+
+void solve() {
+    ll m,n;
+    cin>>n>>m;
+
+    vll arr(n);
+    F0R(i,n) cin>>arr[i];
+
+    sort(arr.begin(),arr.end(),greater<long long>());
+
+    ll ans = 0;
+
+    for(ll i = 0;i<n;i++)
+    {
+        if(m-i == 0) break;
+        ans += arr[i]*(m-i);
+    }
+    cout<<ans<<nl;
 }
+
+
 /*
  
  
@@ -90,5 +107,5 @@ int main(){
 	while (t--){
 		solve();
 	}
-	
+	return 0;
 }
